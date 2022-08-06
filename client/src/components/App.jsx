@@ -14,6 +14,8 @@ class App extends Component {
       searchRecipes: [],
       clientInput: '',
       show: true,
+
+
     }
 
     this.trackInput = this.trackInput.bind(this);
@@ -84,21 +86,24 @@ class App extends Component {
   };
 
 
+
   render() {
     return (
-      <div>
+      <Home>
         <Maintitle>Mimi's master recipe</Maintitle>
         <Navigation/>
         <SearchBar
           track={this.trackInput}
           compare={this.search}
           recipes={this.state.searchRecipes}
+
         />
         <Recommand
         recipes={this.state.recommand}
         show={this.state.show}
+
         />
-      </div>
+      </Home>
     );
   }
 }
@@ -113,4 +118,7 @@ font-size: 60px;
 background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+`
+const Home = styled.div`
+background-color: #f6f2e6;
 `

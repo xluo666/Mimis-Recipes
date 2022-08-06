@@ -12,6 +12,7 @@ export const SearchBar = ({ track, compare, recipes }) => {
       </Form>
       <Cardmodule
         recipes={recipes}
+
       />
     </div>
 

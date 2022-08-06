@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import styled from 'styled-components';
 import { Cardmodule } from './Cardmodule.jsx';
 
+
 export const Recommand = ({ recipes, show }) => {
+
   return(
     <div>
       {show === true &&
@@ -10,6 +12,7 @@ export const Recommand = ({ recipes, show }) => {
         <Subtitle>Recommand</Subtitle>
         <Cardmodule
           recipes={recipes}
+
         />
       </div>}
     </div>
