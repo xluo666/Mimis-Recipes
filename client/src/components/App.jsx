@@ -74,7 +74,6 @@ class App extends Component {
 
     axios.request(options)
       .then(function (response) {
-        console.log(response.data.feed);
         recipeList.setState({
           searchRecipes: response.data.feed,
           show: false,

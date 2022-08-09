@@ -9,7 +9,6 @@ export const Cardmodule = ({ recipes }) => {
 
 
   const getRecipe = (e) => {
-    console.log(e.target.innerText);
     setShowRecommand(true);
     for(let i = 0; i < recipes.length; i++) {
       if(e.target.innerText === recipes[i].display.displayName) {

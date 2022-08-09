@@ -1,8 +1,18 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 export const Modal = ({closeWindow, i, recipes }) => {
 
+  const [steps, setSteps] = useState([]);
+  console.log(steps)
+
+  let pre = recipes[i].content.preparationSteps;
+  if(pre !== null && pre.length > 0) {
+    useEffect(() => {
+      setSteps(pre);
+    }, []);
+
+  }
 
   return(
     <Modalstyle>
@@ -14,12 +24,18 @@ export const Modal = ({closeWindow, i, recipes }) => {
             <Ingredient key={j}>{ingredientLine.wholeLine}</Ingredient>
           )
         })}
+        <P>Prepare Step:</P>
+        {steps.map((step, k) => {
+          return (
+            <Prepare key={k}>{step}</Prepare>
+          )
+        })}
+
       </Uneed>
 
-      {/* <Preparestep></Preparestep>
-      <Source></Source>
-      <Video></Video>
-      <button></button>  */}
+
+
+      {/* <button></button> */}
 
     </Modalstyle>
   )
@@ -51,6 +67,9 @@ margin-top: 30px;
 margin-bottom: 30px;
 `
 const P = styled.p`
+
+`
+const Prepare = styled.div`
 
 `
 
