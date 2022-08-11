@@ -41,6 +41,10 @@ cursor: pointer;
 border-top-right-radius:20px;
 border-bottom-right-radius:20px;
 
+:hover {
+  cursor: pointer;
+}
+
 `
 const Form = styled.div`
 width: 100%;
