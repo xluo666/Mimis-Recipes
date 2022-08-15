@@ -100,12 +100,14 @@ class App extends Component {
     this.setState({
       emailInput: e.target.value
     })
+    console.log(this.state.emailInput)
   }
 
-  trackPassword() {
+  trackPassword(p) {
     this.setState({
-      passWordInput: e.target.value
+      passWordInput: p.target.value
     })
+    console.log(this.state.passWordInput)
   }
 
   // createAccount(){
@@ -116,9 +118,9 @@ class App extends Component {
   // }
 
   signinFunction() {
-
+    // request : emailInput
+    // if(db.indeXof(emailInput) !== -1 )
   }
-
 
   render() {
     return (
