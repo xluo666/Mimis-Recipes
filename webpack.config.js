@@ -26,7 +26,6 @@ module.exports = {
   },
   plugins: [
     new CompressionPlugin({
-g
     }),
   ],
 };

@@ -5,10 +5,12 @@ import { Recommand } from './Recommand.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import {  faSquareFacebook, faSquareTwitter , faSquareInstagram} from '@fortawesome/free-brands-svg-icons';
 import { Signin } from './Signin.jsx';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavigateButton from './NavigateButton.jsx';
+import { Cardmodule } from './Cardmodule.jsx';
 
 
 class App extends Component {
@@ -19,21 +21,16 @@ class App extends Component {
       recommand: [],
       searchRecipes: [],
       clientInput: '',
-      show: true,
-      openSignin: false,
       emailInput: '',
       passWordInput: '',
+
     }
 
     this.trackInput = this.trackInput.bind(this);
     this.search = this.search.bind(this);
-    this.returnToHome = this.returnToHome.bind(this);
-    this.showSignIn = this.showSignIn.bind(this);
     this.trackAccount = this.trackAccount.bind(this);
     this.trackPassword = this.trackPassword.bind(this);
     this.signinFunction = this.signinFunction.bind(this);
-
-
 
 
   }
@@ -45,7 +42,7 @@ class App extends Component {
       url: 'https://yummly2.p.rapidapi.com/feeds/list',
       params: {limit: '24', start: '0'},
       headers: {
-        'X-RapidAPI-Key': '65f798b551msh5bba221b1fa766bp15314bjsn32e2ed380e1f',
+        'X-RapidAPI-Key': 'dcdaa09527mshf19c4bdd9b3ea9fp1d2cb0jsnce25356362a2',
         'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
       }
     }
@@ -58,6 +55,8 @@ class App extends Component {
       .catch(function (error) {
         console.error(error);
       });
+
+
   };
 
   trackInput(e){
@@ -67,7 +66,7 @@ class App extends Component {
   };
 
   search(){
-
+    console.log('aaaaaaaaaaaaaaaaaaaaaaa')
     let recipeList = this;
 
     let options = {
@@ -81,7 +80,7 @@ class App extends Component {
         FAT_KCALMax: '1000'
       },
       headers: {
-        'X-RapidAPI-Key': '65f798b551msh5bba221b1fa766bp15314bjsn32e2ed380e1f',
+        'X-RapidAPI-Key': 'dcdaa09527mshf19c4bdd9b3ea9fp1d2cb0jsnce25356362a2',
         'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
       }
     };
@@ -90,25 +89,12 @@ class App extends Component {
       .then(function (response) {
         recipeList.setState({
           searchRecipes: response.data.feed,
-          show: false,
         })
       })
       .catch(function (error) {
         console.error(error);
       })
   };
-
-  returnToHome() {
-
-    this.setState({
-      searchRecipes: [],
-      clientInput: '',
-      show: true,
-      openSignin: false,
-
-    })
-    console.log(this.state.show)
-  }
 
   trackAccount(e) {
     this.setState({
@@ -133,14 +119,6 @@ class App extends Component {
 
   }
 
-  showSignIn(){
-
-    this.setState({
-      show: false
-    })
-    useNavigate("/signin");
-
-  }
 
   render() {
     return (
@@ -152,41 +130,46 @@ class App extends Component {
             <Span><a href="https://www.facebook.com/" target="_blank"><FontAwesomeIcon icon={faSquareFacebook} /></a></Span>
             <Span><a href="https://www.instagram.com/" target="_blank"><FontAwesomeIcon icon={faSquareInstagram} /></a></Span>
             <Maintitle>Mimi's master recipe</Maintitle>
-            <Spanlogin onClick={this.showSignIn}><FontAwesomeIcon icon={faUserSecret} /></Spanlogin>
+            <NavigateButton />
           </Twit>
 
         </Top>
         <Navigation
-        returnToHome ={this.returnToHome}
         />
         <SearchBar
           track={this.trackInput}
           compare={this.search}
-          recipes={this.state.searchRecipes}
         />
         <Routes>
           <Route
-          path='/'
-           element={
-            <Recommand
-              recipes={this.state.recommand}
-              show={this.state.show}
-            />
-           }
+            path='/'
+              element={
+                <Recommand
+                  recipes={this.state.recommand}
+                />
+              }
+          />
+          <Route
+            path='/search'
+              element={
+                <Cardmodule
+                  recipes={this.state.searchRecipes}
+                />
+              }
           />
 
+
           <Route
-          path='/signin'
-           element={
-            <Signin
-              trackAccount={this.trackAccount}
-              openSignin={this.state.openSignin}
-              trackPassword={this.trackPassword}
+            path='/signin'
+             element={
+              <Signin
+                trackAccount={this.trackAccount}
+                trackPassword={this.trackPassword}
               // createAccount={this.createAccount}
               // forgetPassword={this.forgetPassword}
-              signinFunction={this.signinFunction}
-            />
-           }
+                signinFunction={this.signinFunction}
+              />
+             }
           />
        </Routes>
       </Home>

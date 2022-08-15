@@ -3,18 +3,17 @@ import styled from 'styled-components';
 import { Cardmodule } from './Cardmodule.jsx';
 
 
-export const Recommand = ({ recipes, show }) => {
+export const Recommand = ({ recipes }) => {
 
   return(
     <div>
-      {show === true &&
       <div>
         <Subtitle>Recommand</Subtitle>
         <Cardmodule
           recipes={recipes}
 
         />
-      </div>}
+      </div>
     </div>
   )
 };

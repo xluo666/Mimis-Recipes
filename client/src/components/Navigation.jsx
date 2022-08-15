@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
 
 
-export const Navigation = ({returnToHome}) => {
+export const Navigation = ({}) => {
+  const navigate = useNavigate();
   return(
   <Navi>
-    <Button onClick={returnToHome}>Home</Button>
+    <Button onClick={() => navigate('/')}>Home</Button>
     <Button >News</Button>
     <Button >Contact</Button>
     <Button >Help</Button>

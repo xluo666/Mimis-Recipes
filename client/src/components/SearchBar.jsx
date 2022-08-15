@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Cardmodule } from './Cardmodule.jsx';
+import { useNavigate } from "react-router-dom";
 
 
-export const SearchBar = ({ track, compare, recipes }) => {
+export const SearchBar = ({ track, compare }) => {
+  const navigate = useNavigate();
+
   return(
     <div>
       <Form>
         <Input placeholder='search for recipe...' onChange={track} />
-        <Button1 onClick={compare}>Go</Button1>
+        <Button1 onClick={() => {compare(); navigate('/search');}}>Go</Button1>
       </Form>
-      <Cardmodule
-        recipes={recipes}
-
-      />
     </div>
 
   )

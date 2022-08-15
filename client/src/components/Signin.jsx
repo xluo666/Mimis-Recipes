@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Signin = ({trackAccount,openSignin,trackPassword,signinFunction}) => {
+export const Signin = ({trackAccount,trackPassword,signinFunction}) => {
 
     return(
       <Myaccount>
-        {openSignin === true && <Userid>
+        <Userid>
           <Title>My Account</Title>
           <Divid><Input placeholder='Email' onChange={trackAccount} ></Input></Divid>
           <Divid><Input placeholder='Password' onChange={trackPassword} ></Input></Divid>
           <Signinbutton onClick={signinFunction}>Sign In</Signinbutton>
-        </Userid>}
+        </Userid>
 
         {/*
         <Create onClick={createNewAccount}>Create New Account</Create>
@@ -45,3 +45,5 @@ const Userid = styled.div`
 const Divid = styled.div`
 margin-top: 10px;
 `
+
+const Signinbutton = styled.div``
