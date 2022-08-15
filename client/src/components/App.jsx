@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import {  faSquareFacebook, faSquareTwitter , faSquareInstagram} from '@fortawesome/free-brands-svg-icons';
 import { Signin } from './Signin.jsx';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 
 class App extends Component {
@@ -136,10 +136,10 @@ class App extends Component {
   showSignIn(){
 
     this.setState({
-      openSignin: true,
-      show: false,
+      show: false
     })
-    console.log(this.state.openSignin)
+    useNavigate("/signin");
+
   }
 
   render() {
