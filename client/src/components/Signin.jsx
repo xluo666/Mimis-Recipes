@@ -45,3 +45,5 @@ const Userid = styled.div`
 const Divid = styled.div`
 margin-top: 10px;
 `
+
+const Signinbutton = styled.button``

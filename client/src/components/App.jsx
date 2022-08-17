@@ -130,8 +130,7 @@ class App extends Component {
     };
     axios.get('/signin', formData)
       .then((res) => {
-        console.log("success");
-
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);

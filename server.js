@@ -9,7 +9,7 @@ app.use("/", express.static('client/dist'));
 app.use("/signin", express.static('client/dist'));
 
 
-app.post('/signin', signin);
+app.get('/signin', signin);
 
 
 
