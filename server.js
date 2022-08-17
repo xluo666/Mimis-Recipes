@@ -1,11 +1,15 @@
 const express = require("express");
-const  signup = require("./server/controller.js");
 const app = express();
 app.use(express.json());
 const port = 3000;
+const { signin } = require('./server/controller.js');
+
 
 app.use("/", express.static('client/dist'));
 app.use("/signin", express.static('client/dist'));
+
+
+app.post('/signin', signin);
 
 
 

@@ -2,9 +2,9 @@ CREATE DATABASE mimi_db;
 
 USE mimi_db;
 
-CREATE TABLE `mimi`(
+CREATE TABLE `account`(
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) NOT NULL,
-  `description` TEXT NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` TEXT NOT NULL,
   PRIMARY KEY(`id`)
 );

@@ -8,10 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import {  faSquareFacebook, faSquareTwitter , faSquareInstagram} from '@fortawesome/free-brands-svg-icons';
 import { Signin } from './Signin.jsx';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import NavigateButton from './NavigateButton.jsx';
 import { Cardmodule } from './Cardmodule.jsx';
-import { signin, signup } from '../../server/controller.js';
+import { signin } from '../../server/controller.js';
+
+
 
 
 class App extends Component {
@@ -101,7 +103,7 @@ class App extends Component {
     this.setState({
       emailInput: e.target.value
     })
-    console.log(this.state.emailInput)；
+    console.log(this.state.emailInput)
   }
 
   trackPassword(p) {
@@ -121,20 +123,19 @@ class App extends Component {
   signinFunction() {
     // request : emailInput
     // if(db.indeXof(emailInput) !== -1 )
-    const formdata = {
+
+    var formData = {
       username: this.state.emailInput,
-      password: this.state.passWordInput,
+      password: this.state.passWordInput
     };
+    axios.get('/signin', formData)
+      .then((res) => {
+        console.log("success");
 
-    axios.get('/signin', formdata) {
-      .then(function (response) {
-        console.log(response);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       })
-
-    };
   }
 
   render() {
