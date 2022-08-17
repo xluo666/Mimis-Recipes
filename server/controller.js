@@ -1,15 +1,19 @@
 
-// const db = require('../db');
+const db = require('../db');
 
-// const signup = (params, callback) => {
-//   const string = "INSERT INTO mimi (name, description) values (?,?)"
-//   db.query(string, [params.name, params.description], (error,data)) => {
-//     if (error) => {
-//       callback(error, null);
-//     } else {
-//       callback (null, data);
-//     }
-//   }
-// }
+const signin = (req, res) => {
+  const string = `SELECT * FROM account WHERE username = '${req.body.username}'`
+  db.query(string)
+    .then((data) => {
+      let user = data.row[0];
+      if(user === undefined) {
+        res.status(404).send('user not found');
+      } else if(req.body.password !== user.password) {
+        res.status(400).send('invalid password');
+      } else {
+        console.log('success');
+      }
+    })
+}
 
-// module.exports = {signup};
+module.exports = { signin };

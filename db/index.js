@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  database: 'mimi_db'
+  database: 'mimi_db',
 });
 
 con.connect(function(err) {
@@ -14,4 +14,3 @@ con.connect(function(err) {
   }
 });
 
-module.exports = con;

@@ -8,9 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import {  faSquareFacebook, faSquareTwitter , faSquareInstagram} from '@fortawesome/free-brands-svg-icons';
 import { Signin } from './Signin.jsx';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import NavigateButton from './NavigateButton.jsx';
 import { Cardmodule } from './Cardmodule.jsx';
+
+
 
 
 class App extends Component {
@@ -120,6 +122,18 @@ class App extends Component {
   signinFunction() {
     // request : emailInput
     // if(db.indeXof(emailInput) !== -1 )
+    var formData = {
+      username: this.state.emailInput,
+      password: this.state.passWordInput
+    };
+    axios.get('/signin', formData)
+      .then((res) => {
+        console.log("success");
+
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   render() {
