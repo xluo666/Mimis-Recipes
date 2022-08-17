@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Signin = ({trackAccount,trackPassword,signinFunction}) => {
+export const Signin = ({trackAccount,openSignin,trackPassword,signinFunction}) => {
 
     return(
       <Myaccount>
@@ -45,5 +45,3 @@ const Userid = styled.div`
 const Divid = styled.div`
 margin-top: 10px;
 `
-
-const Signinbutton = styled.div``
