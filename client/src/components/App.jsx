@@ -128,9 +128,13 @@ class App extends Component {
       username: this.state.emailInput,
       password: this.state.passWordInput
     };
-    axios.get('/signin', formData)
+    axios.post('/signin', {
+        headers: { 'Content-Type': 'application/json' },
+        params: formData
+      })
       .then((res) => {
         console.log(res);
+
       })
       .catch((err) => {
         console.log(err);
