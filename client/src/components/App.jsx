@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import {  faSquareFacebook, faSquareTwitter , faSquareInstagram} from '@fortawesome/free-brands-svg-icons';
 import { Signin } from './Signin.jsx';
+import { Signup } from './Signup.jsx';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import NavigateButton from './NavigateButton.jsx';
 import { Cardmodule } from './Cardmodule.jsx';
@@ -26,6 +27,8 @@ class App extends Component {
       clientInput: '',
       emailInput: '',
       passWordInput: '',
+      showerror: false,
+      signupError: false
 
     }
 
@@ -34,6 +37,7 @@ class App extends Component {
     this.trackAccount = this.trackAccount.bind(this);
     this.trackPassword = this.trackPassword.bind(this);
     this.signinFunction = this.signinFunction.bind(this);
+    this.signupFunction = this.signupFunction.bind(this);
 
 
   }
@@ -69,7 +73,7 @@ class App extends Component {
   };
 
   search(){
-    console.log('aaaaaaaaaaaaaaaaaaaaaaa')
+
     let recipeList = this;
 
     let options = {
@@ -113,16 +117,7 @@ class App extends Component {
     console.log(this.state.passWordInput)
   }
 
-  // createAccount(){
-
-  // }
-  // forgetPassword() {
-
-  // }
-
   signinFunction() {
-    // request : emailInput
-    // if(db.indeXof(emailInput) !== -1 )
 
     var formData = {
       username: this.state.emailInput,
@@ -133,12 +128,39 @@ class App extends Component {
         params: formData
       })
       .then((res) => {
-        console.log(res);
-
+        console.log(res)
       })
       .catch((err) => {
-        console.log(err);
+        if(err.response.status === 404) {
+          this.setState({
+            showerror: true
+          })
+        }
+        console.log(err.response.status)
       })
+  }
+
+  signupFunction(){
+    var formData = {
+      username: this.state.emailInput,
+      password: this.state.passWordInput
+    };
+    axios.post('/signup', {
+        headers: { 'Content-Type': 'application/json' },
+        params: formData
+    })
+    .then((res) => {
+      console.log(res);
+
+    })
+    .catch((err) => {
+      console.log(err.response.status);
+      // if(err.response.status === 404) {
+      //   this.setState({
+      //     showerror: true
+      //   })
+      // }
+    })
   }
 
   render() {
@@ -189,6 +211,20 @@ class App extends Component {
               // createAccount={this.createAccount}
               // forgetPassword={this.forgetPassword}
                 signinFunction={this.signinFunction}
+                showerror={this.state.showerror}
+              />
+             }
+          />
+
+
+          <Route
+            path='/signup'
+             element={
+              <Signup
+                trackAccount={this.trackAccount}
+                trackPassword={this.trackPassword}
+                signupFunction={this.signupFunction}
+                signupError={this.state.signupError}
               />
              }
           />
