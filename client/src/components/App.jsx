@@ -155,11 +155,6 @@ class App extends Component {
     })
     .catch((err) => {
       console.log(err.response.status);
-      // if(err.response.status === 404) {
-      //   this.setState({
-      //     showerror: true
-      //   })
-      // }
     })
   }
 
@@ -215,8 +210,6 @@ class App extends Component {
               />
              }
           />
-
-
           <Route
             path='/signup'
              element={
